@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+   
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    
+  
+  <title>Box4U</title>
+  <style>
+ input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  font-weight: bold !important;
+  margin: 0;
+}
+* {
+    font-family: 'Poppins', sans-serif !important;
+  }
+    body {
+      margin: 0;
+      color: #fff;
+      font-family: "Popins", sans-serif !important;
+      display: grid !important;
+      flex-direction: row-reverse;
+      font-weight: bold !important;
+      place-items: center;
+            grid-template-columns: repeat(10, minmax(0, 1fr));
+        /* overflow: auto !important; */
+    }
+    .values-container {
+  display: flex;
+  justify-content: space-between; /* Adjusts the spacing of the items within the container */
+  position: absolute;
+  top: -0px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  background: none;
+  border-radius: 5px;
+  box-shadow: none;
+  width: 430px; /* Fixed width of the container */
+  min-width: 300px; /* Minimum width, can adjust as needed */
+}
+
+.value-pair {
+  display: flex;
+  align-items: baseline; /* Aligns the text baselines */
+}
+
+.value-pair label {
+  margin-right: 5px; /* Spacing between label and value */
+}
+#valueContainer, #valumeContainer {
+  margin-right: 5px; /* Creates a space between the value and the unit */
+}
+    div:where(.swal2-container) button:where(.swal2-close):focus {
+    outline: none;
+    box-shadow: none !important;
+}
+    .form {
+      padding: 20px;
+      /* color: gold; */
+      color: rgb(255, 255, 255);
+      background-color: #000000;
+      width: 100% !important;
+    }
+   
+  
+
+    p {
+      margin-left: 20px;
+      /* color: gold; */
+    }
+    .boxs {
+      height: 148px;width: 148px;margin: 10px;border-radius: 10px;border: 2px solid white;
+      cursor: pointer;
+    }
+    .open {
+    margin-left: 10px;
+    margin-right: 20px;
+}
+    .close {
+      margin-right: 20px;
+}
+.switchBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px;
+    color: gold;
+    background-color: black;
+    border: 0px;
+}
+.btnM {
+    background-color: #494949;
+    color: white !important;
+    border-radius: 26px !important;
+
+}
+.btnM:hover {
+    background-color: #494949;
+}
+.btn-group{
+  background-color: #303030 !important;
+  color: white !important;    border-radius: 26px;
+
+}
+.btn{
+  color: white !important;
+  border-radius: 26px;
+  /* padding: 10px 20px !important; */
+
+
+}
+.btn:active{
+  color: white !important;
+  border-radius: 26px;
+  /* padding: 10px 20px !important; */
+border: none;
+
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .form {
+      padding: 20px;
+      /* color: gold; */
+      color: white;
+      background-color: #000000;
+      width: 100% !important;
+    }
+  .btn {
+      padding: 10px 10px;
+      /* color: gold; */
+      color: white;
+      width: 100% !important;
+    }
+}
+.input-cn {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 20px;
+}
+
+.grid-width{
+  width: 50%;
+}
+.inputs-sec{
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 20px !important;
+    }
+    .inputs-wrapper{
+      width: 70% !important;
+      font-weight: bold !important;
+    }
+    .inputs-wrapper input{
+      padding:  12px !important;
+      font-family: 'Poppins'!important ;
+
+
+    }
+     .inputs-wrapper input{
+      padding:  12px !important;
+      font-family: 'Poppins'!important ;
+
+    }
+
+    .colors-sec{
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      place-items: center !important;
+      position: relative;
+   
+
+    }
+.desgins-btns{
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  place-items: center;
+  position: relative;
+  /* right: 15px !important; */
+  gap: 10px;
+
+}
+    
+    
+    #canva{
+  height: 1000px !important; 
+  grid-column: span 7 / span 7 !important;
+  overflow: hidden !important;
+  position: fixed !important;
+  inset: 0 !important;
+  left: 200px !important;
+  top: -100px !important;
+  
+
+}
+ .mainElement{
+  grid-column: span 3 / span 3 !important;
+
+ }
+ @media only screen and (max-width: 1580px) {
+  .inputs-sec{
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      position: relative;
+      /* left: 28px; */
+      gap: 20px 0 !important;
+      /* margin: 16px 0; */
+      gap: 20px !important;
+        
+      
+    }
+ }
+ @media only screen and (max-width: 580px) {
+  .colors-sec{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      place-items: center;
+      width: 120% !important;
+      right: 24px;
+
+    }
+ }
+
+@media only screen and (max-width: 1080px) {
+  .desgins-btns{
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  place-items: center;
+  position: relative;
+  /* right: 15px !important; */
+
+}
+  /* For mobile phones: */
+  .colors-sec{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      place-items: center;
+      /* width: 120% !important;
+      right: 24px; */
+
+    }
+ #canva{
+  height: 500px !important;
+  position: relative !important;
+    left: 0 !important;
+ }
+ body{
+              grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+              place-items: center;
+              overflow: hidden;
+              
+
+
+ }
+ .mainElement{
+  grid-column: span 2 / span 2 !important;
+  order: 1;
+  /* position: relative !important; */
+  height: 40vh !important;
+  bottom: 100px !important;
+  overflow-y: auto;
+  justify-content: flex-start !important;
+ }
+
+.inputs-sec{
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      position: relative;
+      left: 0;
+      margin-top: 12px !important;
+    }
+    .inputs-wrapper{
+      width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 321px) {
+  .mainElement{
+    grid-column: span 2 / span 2 !important;
+  order: 1;
+  position: relative !important;
+  height: 40vh !important;
+  bottom: 200px !important;
+  overflow-y: auto;
+  justify-content: flex-start !important;
+  }
+  #canva{
+  height: 350px !important;
+  position: relative !important;
+    left: 0 !important;
+    top: -80px !important;
+    margin-bottom: 100px !important;
+ }
+.btn{
+  font-size: 10px;
+}
+.colors-sec{
+font-size: 10px !important;
+}
+}
+
+
+.info-circle {
+  margin-left: 5px;
+  /* color: gold; */
+  text-align: center;
+  border-radius: 50%;
+  padding: 2px;
+  font-size: 20px;
+  cursor: pointer;
+}
+label {
+  font-family: 'Poppins'!important ;
+}
+.inputs-sec input:focus{
+    box-shadow: none !important;
+    }
+    .info-circle {
+  margin-left: 5px;
+  color: gold;
+  text-align: center;
+  border-radius: 50%;
+  padding: 2px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+    /* firefox */
+    input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"]::-moz-number-spin-box {
+  -moz-appearance: none;
+}
+/*  */
+  </style>
+  <script type="module" crossorigin src="/assets/test-85929e40.js"></script>
+  <link rel="stylesheet" href="/assets/test-58948017.css">
+</head>
+
+<body style="background-color: #000; padding: 30px;" >
+
+
+
+  <div style=" width: 100%;position: relative;bottom:0;display: flex; justify-content: center;order: 1" id="canva" ></div>
+
+
+
+ 
+  <div style="flex-direction: column; padding: 0 0 !important; background-color: black; width: 100%!important;margin: auto; display: flex; justify-content: center;position: relative;bottom: 0;;" class="mainElement">
+    <div  class="">
+      <div class="form" style="background: transparent;" >
+        <div  class="colors-sec d- flex-row justify-content-between">
+          
+
+          <div   style="font-family: 'Poppins' !important; position: relative; top: 20px;margin: 0 10px;">
+            <td><label class="form-label " style="padding: 12px !important ; ; background: #303030 !important;color: white;padding: 10px; border-radius: 20px; font-weight: bold;" for="back-color-input"><div style="display: flex; align-items: center;">
+              <span style="white-space: nowrap;font-size: 13px;">Color</span>
+              <div  id="color2" style="width:20px; height: 20px;background-color:#e66bc5;border-radius: 20px;margin-left: 6px;"></div>
+            </div></label></td>
+            <td><input class="form-control form-control-color" style="visibility: hidden;" type="color" id="back-color-input"
+                name="back-color-input" value="#e66bc5"></td>
+          </div>
+   
+           <table style="margin-bottom: 10px;">
+    <tr>
+      <td>
+        <button   id="start-pause" style=" border: none; padding: 5px;align-items: center; background: #303030;border-radius: 20px;display: flex;margin: 0 10px;">
+          <img id="start-pause-img" src="/assets/startGray-5730113f.svg" width="40" height="40" style="background: none;">
+            <span id="tglText" style="font-size: 13px !important; font-family: 'Poppins' !important; padding: 0 8px; color: white; font-weight: bold;position: relative;right: 10px !important;">Play</span>
+      </button>
+
+    </td>
+    
+    
+    </tr>
+  </table>
+        </div>
+        <div class="desgins-btns" style=" justify-content: space-between;align-items: center;margin-top: 10px;" >
+          <div  class="btn-group btn-group-sm w-100 mb-2 bg-white p-1" role="group" style="margin: 0;padding: 5px !important;"  aria-label="...">
+              <button  id="design"     style=" font-family: 'Poppins' !important;font-weight: bold;white-space: nowrap; padding: 12px !important;"  class="btn btnM"> Design mode</button>
+              <button  id="assembly" style=" font-family: 'Poppins' !important;font-weight: bold;white-space: nowrap ; " class="btn">Assembly mode</button>
+            </div>
+            <div  style="margin: 0 ;" class="btn-group btn-group-sm w-100 mb-2 bg-white p-1" role="group" aria-label="...">
+              <button style=" font-family: 'Poppins' !important;font-weight: bold;padding: 12px !important;" id="openBox" class="btn ">Open</button>
+              <button style=" font-family: 'Poppins' !important;font-weight: bold;padding: 12px !important;" id="closeBox" class="btn btnM">Close</button>
+            </div>
+          </div
+          >
+          <div class="desgins-btns" style=" justify-content: space-between;align-items: center;margin-top: 10px;" >
+            <div  class="btn-group btn-group-sm w-100 mb-2 bg-white p-1" role="group" style="margin: 0;padding: 5px !important;"  aria-label="...">
+              <button id="British" style="font-family: 'Poppins' !important; font-weight: bold;padding: 12px !important;"  type="button" name="isBritishUnits-input" class="btn btnM">Millimeter</button>
+              <button id="SI"  style=" font-family: 'Poppins' !important;font-weight: bold;padding: 12px !important;" type="button" name="isBritishUnits-input" class="btn">Inch</button>
+              </div>
+              <!-- <div  style="margin: 0 ;" class="btn-group btn-group-sm w-100 mb-2 bg-white p-1" role="group" aria-label="...">
+                <button id="intt" style=" font-family: 'Poppins' !important;font-weight: bold;padding: 12px;" type="button" name="intOrExtDim-input" class="btn btnM">Outside</button>
+                <button id="extt" style=" font-family: 'Poppins' !important;font-weight: bold;padding: 12px;" type="button" name="intOrExtDim-input" class="btn">Inside</button>
+              </div> -->
+              <div class="btn-group btn-group-sm w-100 mb-2 bg-white p-1" style="margin: 0 20px;"  role="group" aria-label="...">
+                <button id="door" style=" font-family: 'Poppins' !important;font-weight: bold;padding: 12px;" type="button" name="isOpenBox-input" class="btn btnM">Door</button>
+                <button id="doorless" style=" font-family: 'Poppins' !important;font-weight: bold;padding: 12px;" type="button" name="isOpenBox-input" class="btn">Doorless</button>
+              </div>
+
+              
+              <td> <select class="btn-group btn-group-sm w-100 mb-2 bg-white p-3" style="margin: 0 20px;" id="material-select">
+                
+               <option value="plywood">Plywood</progress></option>
+    <option value="mdf">MDF</progress></option>
+                <option value="plexyglass">Plexy Glass</progress></option>
+     
+                </select></td>
+
+            </div
+            >
+        <!-- <td><label>Units:</label></td> -->
+        <div style="visibility:hidden; display: flex; justify-content: space-between;align-items: center;margin-top: 10px;background-color: red;" >
+          <div  class="btn-group btn-group-sm w-100 mb-2 bg-white p-1" role="group" aria-label="...">
+            <button id="British" style="font-family: 'Poppins' !important; font-weight: bold;padding: 12px !important;"  type="button" name="isBritishUnits-input" class="btn btnM">Millimeter</button>
+            <button id="SI"  style=" font-family: 'Poppins' !important;font-weight: bold;padding: 12px !important;" type="button" name="isBritishUnits-input" class="btn">Inch</button>
+          </div>
+          <!-- <div class="btn-group btn-group-sm w-100 mb-2 bg-white p-1" style="margin: 0 20px;"  role="group" aria-label="...">
+            <button id="intt" style=" font-family: 'Poppins' !important;font-weight: bold;padding: 12px;" type="button" name="intOrExtDim-input" class="btn btnM">Outside</button>
+            <button id="extt" style=" font-family: 'Poppins' !important;font-weight: bold;padding: 12px;" type="button" name="intOrExtDim-input" class="btn">Inside</button>
+          </div> -->
+
+          <div  style="margin: 0 ;" class="btn-group btn-group-sm w-100 mb-2 bg-white p-1" role="group" aria-label="...">
+            <button id="door" style=" font-family: 'Poppins' !important;font-weight: bold;padding: 12px;" type="button" name="isOpenBox-input" class="btn btnM">Door</button>
+            <button id="doorless" style=" font-family: 'Poppins' !important;font-weight: bold;padding: 12px;" type="button" name="isOpenBox-input" class="btn">Doorless</button>
+          </div>
+
+          <td><label id="boxWeight" for="material-select">Material:</label></td>
+          <td> <select class="form-control" id="material-select">
+            
+           <option value="plywood">Plywood</progress></option>
+            <option value="mdf">MDF</progress></option>
+            <option value="plexyglass">Plexy Glass</progress></option>
+ 
+            </select></td>
+        </div>
+        
+
+      </tr>
+      <div class="values-container">
+        <div class="value-pair">
+          <label>Total Weight:</label>
+          <span id="valueContainer">0</span> <span id="weightUnit">gr</span>
+        </div>
+        <div class="value-pair">
+          <label>Internal Volume:</label>
+          <span id="valumeContainer">1499</span> <span id="volumeUnit">cm<sup>3</sup></span>
+        </div>
+    </div>
+  
+        
+    
+        
+       
+
+       <!-- inputs -->
+  <div   class="inputs-wrapper"  style="visibility: visible;background-color: transparent;width: 100% !important; position: relative; bottom: 60px;" >
+    <div class="inputs-sec"  style="display: grid;gap: 10px;">
+
+
+ 
+
+<!--yt --> 
+      <tr>
+        <td>
+          <div style="position: relative;width: 100%;" class="">
+            <td><label style="position: absolute; left: 10px; top: 12px;" class="form-label" id="yt-label" for="yt-input">Length</label></td>
+            <img id="yt-up" style="position: absolute; right: 10px; top: 10px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABGSURBVHgB5Y5BDQAgDAM3J5OEI6RgAQdIwcIclP0gS5bxhkv6ai8p0ScAqJZhkVuhYTNT0Qm5aEVBTD+37EQJTigzKz3MAuEWW0tKSxQ4AAAAAElFTkSuQmCC" alt="">
+            <img id="yt-down" style="position: absolute; right: 10px; top: 20px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABFSURBVHgB5YtBDQAgDAM7J0hBAg5AGlZQgpSyD5/Bsj9csqxpesB7yA4ks77q7IaI9KNVKelN3inwcMSGCCPGghETPmIBirZOCnbIxRYAAAAASUVORK5CYII=" alt="">
+            <input style=" font-weight: bold; padding-right: 40px !important; text-align: end;color: white; width: 100%; padding: 10px;border-radius: 20px; background-color: #303030;outline: none !important;border: none !important;" class="form-control" type="number" id="yt-input" step="5" value="100">
+             </div>
+        </td>
+        <td><span id="yt-alert" style="display: none; color: red;">Value should be between 150 and 2000 mm</span></td>
+      </tr>
+
+<!--zt -->      
+      <tr>
+        <td>
+          <div style="position: relative;width: 100%;" class="">
+            <td><label style="position: absolute; left: 10px; top: 12px;"  class="form-label" id="zt-label" for="zt-input">Height</label></td>
+              <img id="zt-up" style="position: absolute; right: 10px; top: 10px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABGSURBVHgB5Y5BDQAgDAM3J5OEI6RgAQdIwcIclP0gS5bxhkv6ai8p0ScAqJZhkVuhYTNT0Qm5aEVBTD+37EQJTigzKz3MAuEWW0tKSxQ4AAAAAElFTkSuQmCC" alt="">
+              <img id="zt-down" style="position: absolute; right: 10px; top: 20px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABFSURBVHgB5YtBDQAgDAM7J0hBAg5AGlZQgpSyD5/Bsj9csqxpesB7yA4ks77q7IaI9KNVKelN3inwcMSGCCPGghETPmIBirZOCnbIxRYAAAAASUVORK5CYII=" alt="">
+            <input  style=" font-weight: bold; padding-right: 40px !important; text-align: end;color: white; width: 100%; padding: 10px;border-radius: 20px; background-color: #303030;outline: none !important;border: none !important;" class="form-control" type="number" id="zt-input" step="5" value="70">
+          </div>
+        </td>
+        <td><span id="zt-alert" style="display: none; color: red;">Value should be between 30 and 1000 mm</span></td>
+      </tr>
+
+
+
+<!-- thick2 -->    
+<tr>
+  <td>
+    <div style="position: relative;width: 100%;" class="">
+      <td><label  style="position: absolute; left: 10px; top: 10px;"  class="form-label" id="innerThick-label" for="innerThick-input">Thickness</label></td>
+      <img id="think2-up" style="position: absolute; right: 10px; top: 10px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABGSURBVHgB5Y5BDQAgDAM3J5OEI6RgAQdIwcIclP0gS5bxhkv6ai8p0ScAqJZhkVuhYTNT0Qm5aEVBTD+37EQJTigzKz3MAuEWW0tKSxQ4AAAAAElFTkSuQmCC" alt="">
+      <img id="think2-down" style="position: absolute; right: 10px; top: 20px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABFSURBVHgB5YtBDQAgDAM7J0hBAg5AGlZQgpSyD5/Bsj9csqxpesB7yA4ks77q7IaI9KNVKelN3inwcMSGCCPGghETPmIBirZOCnbIxRYAAAAASUVORK5CYII=" alt="">
+      <input style=" font-weight: bold;padding-right: 40px !important; text-align: end;color: white; width: 100%; padding: 10px;border-radius: 20px; background-color: #e66bc5;outline: none !important;border: none !important;" class="form-control" type="number" id="innerThick-input" step="0.1" value="0.0040">
+    </div>
+  </td>
+  <td><span id="innerThick-alert" style="display: none; color: red;">Value should be between 1 and 10 mm</span>
+  </td>
+</tr>
+
+
+
+ <!-- holesconst fingersize -->       
+      <tr>
+        <td>
+          <div style="position: relative;width: 100%;" class="">
+            <td><label style="position: absolute; left: 10px; top: 10px;"  class="form-label" id="holesConst-label" for="holesConst-input">Finger size</label></td>
+            <img id="holesConst-up" style="position: absolute; right: 10px; top: 10px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABGSURBVHgB5Y5BDQAgDAM3J5OEI6RgAQdIwcIclP0gS5bxhkv6ai8p0ScAqJZhkVuhYTNT0Qm5aEVBTD+37EQJTigzKz3MAuEWW0tKSxQ4AAAAAElFTkSuQmCC" alt="">
+            <img id="holesConst-down" style="position: absolute; right: 10px; top: 20px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABFSURBVHgB5YtBDQAgDAM7J0hBAg5AGlZQgpSyD5/Bsj9csqxpesB7yA4ks77q7IaI9KNVKelN3inwcMSGCCPGghETPmIBirZOCnbIxRYAAAAASUVORK5CYII=" alt="">
+
+            <input style=" font-weight: bold;padding-right: 40px !important; text-align: end;color: white; width: 100%; padding: 10px;border-radius: 20px; background-color: #303030;outline: none !important;border: none !important;" class="form-control" type="number" id="holesConst-input" step="5" value="40">
+          </div>
+        </td>
+        <td><span id="holesConst-alert" style="display: none; color: red;">Value should be between 10 and 50 mm</span>
+        </td>
+      </tr>
+
+ <!-- gapfit -->       
+      <tr>
+        <td>
+          <div style="position: relative;width: 100%;" class="">
+            <td><label style="position: absolute; left: 10px; top: 10px;" class="form-label" id="gapFit-label" for="gapFit-input">Interference fit</label></td>
+            <img id="gapFit-up" style="position: absolute; right: 10px; top: 10px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABGSURBVHgB5Y5BDQAgDAM3J5OEI6RgAQdIwcIclP0gS5bxhkv6ai8p0ScAqJZhkVuhYTNT0Qm5aEVBTD+37EQJTigzKz3MAuEWW0tKSxQ4AAAAAElFTkSuQmCC" alt="">
+            <img id="gapFit-down" style="position: absolute; right: 10px; top: 20px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABFSURBVHgB5YtBDQAgDAM7J0hBAg5AGlZQgpSyD5/Bsj9csqxpesB7yA4ks77q7IaI9KNVKelN3inwcMSGCCPGghETPmIBirZOCnbIxRYAAAAASUVORK5CYII=" alt="">
+            <input style=" font-weight: bold; padding-right: 40px !important; text-align: end;color: white; width: 100%; padding: 10px;border-radius: 20px; background-color: #303030;outline: none !important;border: none !important;"  class="form-control" type="number" id="gapFit-input" step="0.05" value="0.4">
+          </div>
+        </td>
+        <td><span id="gapFit-alert" style="display: none; color: red;">Value should be between 0 and 0.8 mm</span></td>
+      </tr>
+ 
+
+
+    </div>
+    <button id="dxf-download-button" class="btn " style="font-family: 'Popins'; padding: 12px  ; width: 50%;margin: 0 auto; margin-top: 22px; background-color: #FF0000; font-weight: bold;"  >Download DXF</button>
+    <button  id="stl-download-button" class="btn  mt-2" style="font-family: 'Popins'; padding: 12px  ; width: 50%;margin: 0 auto; margin-top: 22px; background-color: #D3B666; font-weight: bold;" >Download STL</button>
+
+       
+       
+  </div>
+      </div>
+ 
+    </div>
+    
+    
+  
+
+  </div>
+
+  <!-- <button id="myBtn">Open Modal</button> -->
+
+  
+  <!-- <script
+  type="text/javascript"
+  src="../node_modules/tw-elements/dist/js/tw-elements.umd.min.js"></script> -->
+  
+
+  
+
+</body>
+
+</html>
